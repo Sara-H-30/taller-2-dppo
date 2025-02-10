@@ -42,7 +42,7 @@ public class SandboxArreglos
      */
     public int[] getCopiaEnteros( )
     {
-        return null;
+    	return this.arregloEnteros.clone();
     }
 
     /**
@@ -51,7 +51,7 @@ public class SandboxArreglos
      */
     public String[] getCopiaCadenas( )
     {
-        return null;
+        return this.arregloCadenas.clone();
     }
 
     /**
@@ -60,7 +60,7 @@ public class SandboxArreglos
      */
     public int getCantidadEnteros( )
     {
-        return -1;
+        return this.arregloEnteros.length;;
     }
 
     /**
@@ -69,7 +69,7 @@ public class SandboxArreglos
      */
     public int getCantidadCadenas( )
     {
-        return -1;
+        return this.arregloCadenas.length;
     }
 
     /**
@@ -79,6 +79,9 @@ public class SandboxArreglos
      */
     public void agregarEntero( int entero )
     {
+    	arregloEnteros = Arrays.copyOf(this.arregloEnteros, this.arregloEnteros.length + 1);
+        arregloEnteros[arregloEnteros.length - 1] = entero;
+
 
     }
 
@@ -89,6 +92,9 @@ public class SandboxArreglos
      */
     public void agregarCadena( String cadena )
     {
+    	arregloCadenas = Arrays.copyOf(arregloCadenas, arregloCadenas.length + 1);
+        arregloCadenas[arregloCadenas.length - 1] = cadena;
+
 
     }
 
@@ -98,6 +104,7 @@ public class SandboxArreglos
      */
     public void eliminarEntero( int valor )
     {
+    	arregloEnteros = Arrays.stream(arregloEnteros).filter(x -> x != valor).toArray();
 
     }
 
@@ -107,6 +114,7 @@ public class SandboxArreglos
      */
     public void eliminarCadena( String cadena )
     {
+    	arregloCadenas = Arrays.stream(arregloCadenas).filter(x -> !x.equals(cadena)).toArray(String[]::new);
 
     }
 
@@ -119,6 +127,13 @@ public class SandboxArreglos
      */
     public void insertarEntero( int entero, int posicion )
     {
+    	posicion = Math.max(0, Math.min(posicion, arregloEnteros.length));
+        int[] nuevo = new int[arregloEnteros.length + 1];
+        System.arraycopy(arregloEnteros, 0, nuevo, 0, posicion);
+        nuevo[posicion] = entero;
+        System.arraycopy(arregloEnteros, posicion, nuevo, posicion + 1, arregloEnteros.length - posicion);
+        arregloEnteros = nuevo;
+
 
     }
 
@@ -140,6 +155,19 @@ public class SandboxArreglos
      */
     public void reiniciarArregloEnteros( double[] valores )
     {
+    	 if (valores == null)
+    	 {
+             arregloEnteros = new int[0]; 
+         }
+
+         int[] arregloEnteros = new int[valores.length];
+
+         for (int i = 0; i < valores.length; i++) 
+         {
+             double numero =valores[i]; 
+             arregloEnteros=(int) numero;
+         }
+
 
     }
 
