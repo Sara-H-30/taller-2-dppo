@@ -1,6 +1,8 @@
 package uniandes.dpoo.estructuras.logica;
 
 import java.util.HashMap;
+import java.util.Arraylist;
+
 
 /**
  * Esta clase tiene un conjunto de métodos para practicar operaciones sobre arreglos de enteros y de cadenas.
